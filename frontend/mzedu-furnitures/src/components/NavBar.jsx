@@ -20,7 +20,7 @@ export default function NavBar() {
       <Navbar fluid rounded className='bg-gray-100'>
     <Navbar.Brand gradientDuoTone="pinkToOrange">
       <img className='w-8' src={logo}/>
-      <span className="pl-2 text-pink-800 self-center whitespace-nowrap text-3xl dark:text-white font-Dancing">Mzedu Furniture</span>
+      <span className="pl-2 text-pink-800 self-center whitespace-nowrap text-2xl md:text-3xl dark:text-white font-Dancing">Mzedu Furniture</span>
     </Navbar.Brand>
     <div className="flex md:order-2">
       <Button gradientDuoTone="pinkToOrange">Sign In</Button>
