@@ -5,7 +5,11 @@ module.exports = {
   flowbite.content(),
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Dancing:["Dancing Script",'cursive'],
+      },
+    },
   },
   plugins: [
     flowbite.plugin(),
