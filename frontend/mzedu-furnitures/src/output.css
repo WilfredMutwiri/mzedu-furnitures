@@ -1249,6 +1249,10 @@ input[type="range"]::-ms-fill-lower{
   margin-top: -14rem;
 }
 
+.-mt-60{
+  margin-top: -15rem;
+}
+
 .mb-1{
   margin-bottom: 0.25rem;
 }
@@ -1351,6 +1355,66 @@ input[type="range"]::-ms-fill-lower{
 
 .mt-6{
   margin-top: 1.5rem;
+}
+
+.-mt-64{
+  margin-top: -16rem;
+}
+
+.-ml-32{
+  margin-left: -8rem;
+}
+
+.-mr-32{
+  margin-right: -8rem;
+}
+
+.-mr-24{
+  margin-right: -6rem;
+}
+
+.mr-24{
+  margin-right: 6rem;
+}
+
+.ml-24{
+  margin-left: 6rem;
+}
+
+.ml-32{
+  margin-left: 8rem;
+}
+
+.ml-44{
+  margin-left: 11rem;
+}
+
+.ml-48{
+  margin-left: 12rem;
+}
+
+.ml-52{
+  margin-left: 13rem;
+}
+
+.ml-56{
+  margin-left: 14rem;
+}
+
+.ml-64{
+  margin-left: 16rem;
+}
+
+.-mt-72{
+  margin-top: -18rem;
+}
+
+.-mt-80{
+  margin-top: -20rem;
+}
+
+.ml-72{
+  margin-left: 18rem;
 }
 
 .block{
@@ -1486,14 +1550,6 @@ input[type="range"]::-ms-fill-lower{
   height: 100vh;
 }
 
-.h-12{
-  height: 3rem;
-}
-
-.h-11{
-  height: 2.75rem;
-}
-
 .max-h-\[90dvh\]{
   max-height: 90dvh;
 }
@@ -1602,10 +1658,6 @@ input[type="range"]::-ms-fill-lower{
 .w-max{
   width: -moz-max-content;
   width: max-content;
-}
-
-.w-11\/12{
-  width: 91.666667%;
 }
 
 .max-w-2xl{
@@ -1874,10 +1926,6 @@ input[type="range"]::-ms-fill-lower{
 
 .gap-5{
   gap: 1.25rem;
-}
-
-.gap-3{
-  gap: 0.75rem;
 }
 
 .-space-x-4 > :not([hidden]) ~ :not([hidden]){
@@ -3024,10 +3072,6 @@ input[type="range"]::-ms-fill-lower{
   text-align: center;
 }
 
-.align-middle{
-  vertical-align: middle;
-}
-
 .font-Dancing{
   font-family: Dancing Script, cursive;
 }
@@ -3118,6 +3162,11 @@ input[type="range"]::-ms-fill-lower{
 
 .leading-tight{
   line-height: 1.25;
+}
+
+.text-black{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-blue-500{
@@ -3403,11 +3452,6 @@ input[type="range"]::-ms-fill-lower{
 .text-yellow-900{
   --tw-text-opacity: 1;
   color: rgb(99 49 18 / var(--tw-text-opacity));
-}
-
-.text-black{
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .underline{
@@ -5884,6 +5928,10 @@ input[type="range"]::-ms-fill-lower{
     margin-right: 0.5rem;
   }
 
+  .md\:ml-0{
+    margin-left: 0px;
+  }
+
   .md\:ml-3{
     margin-left: 0.75rem;
   }
@@ -5900,8 +5948,12 @@ input[type="range"]::-ms-fill-lower{
     margin-top: 0px;
   }
 
-  .md\:ml-0{
-    margin-left: 0px;
+  .md\:-mt-80{
+    margin-top: -20rem;
+  }
+
+  .md\:ml-64{
+    margin-left: 16rem;
   }
 
   .md\:block{

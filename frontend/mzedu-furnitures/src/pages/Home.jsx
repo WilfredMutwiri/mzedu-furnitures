@@ -8,6 +8,7 @@ import dinningTable1 from '../images/dinningTable1.jpeg'
 import popular1 from '../images/popular1.jpeg'
 import popular2 from '../images/popular2.jpeg'
 import popular3 from '../images/officeDesk1.jpeg'
+import newSign from '../images/sign.png'
 import { useState,useEffect } from 'react'
 import { Button } from 'flowbite-react'
 export default function Home() {
@@ -54,6 +55,7 @@ export default function Home() {
           </div>
           <div className="pb-3 border-r-4 border-white bg-gray-300">
             <img src={dinningTable1}/>
+            <img className="w-14 -mt-64 md:-mt-80 ml-52 md:ml-64 absolute" src={newSign} alt="" />
             <div className="block md:flex">
               <div>
               <h2 className="p-3 font-semibold">Complete Dinning Table</h2>
