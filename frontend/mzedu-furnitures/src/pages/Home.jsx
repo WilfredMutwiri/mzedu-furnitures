@@ -14,6 +14,8 @@ import bedsAd from '../images/bedsAds.png'
 import diningAd from '../images/diningAd.jpg'
 import officeAd from '../images/officeAd.png'
 import sofasAd from '../images/sofasAd.png'
+import Decor1 from '../images/luxurydecor.png'
+import Decor2 from '../images/decor2.png'
 import { useState,useEffect } from 'react'
 import { Button } from 'flowbite-react'
 export default function Home() {
@@ -29,9 +31,11 @@ export default function Home() {
   const dealimages=[popular1,dinningTable1,dinningTable2];
   const [currentdealImage,setCurrentdealImage]=useState(0);
   const [currentImageName,setImageName]=useState(0);
+  const [decorImage,setDecorImage]=useState(0)
   const [imagePrice,setImagePrice]=useState(0);
   const imageName=["Outdoor Tent","Complete Dinning Table","Living Room Table"]
   const imagePrices=['20,000','16,000','28,500']
+  const decorImages=[Decor1,Decor2]
   const changedealImage=(direction)=>{
     setCurrentdealImage((prevDealImage)=>{
       if(direction==="prev"){
@@ -55,6 +59,16 @@ export default function Home() {
       }
     })
     }
+
+    const changedecorImage=(direction)=>{
+      setDecorImage((prevDecorImage)=>{
+        if(direction==="prev"){
+          return prevDecorImage===0?decorImages.length-1:prevDecorImage-1;
+        }else{
+          return prevDecorImage===decorImages.length-1?0:prevDecorImage+1;
+        }
+      })
+      }
   return (
     <div >
       <div className='max-w-[1400px] h-[780px] w-full m-auto'>
@@ -176,6 +190,49 @@ export default function Home() {
           </div>
         </div>
         </div>
+      </section>
+      {/* decore section */}
+      <section>
+        <div className='hidden md:block'>
+        <div className='w-10/12 block md:flex m-auto pt-10 pb-10 gap-0 md:gap-14'>
+          <a href='#'>
+          <div className='' id='decor'>
+            <img src={Decor1}/>
+          </div>
+          </a>
+          <a href='#'>
+          <div id='decor'>
+            <img src={Decor2}/>            
+          </div>
+          </a>
+        </div>
+        </div>
+
+        <div className="w-10/12 m-auto block md:hidden">
+              <div className="flex gap-2 pt-10 pb-10 m-auto ">
+                <Button className='h-10 my-auto w-6' onClick={()=>changedecorImage('prev')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-auto h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+                </Button>
+                <div id='decor'>
+                <img className='w-60 h-60 object-contain mx-auto' src={decorImages[decorImage]}/>
+                </div>
+                <Button className='h-10 my-auto w-6' onClick={()=>changedecorImage('next')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+                </Button>
+              </div>
+            </div>
+            <div className=' mt-5 text-white bg-teal-900 p-6 w-11/12 m-auto mb-5'>
+              <p className='text-center leading-relaxed font-semibold text-lg'>
+                SAVE UP TO 25% OFF SOFAS!
+              </p>
+              <h2 className='text-center'>
+              *Terms & Condtitons Apply. Save on almost everything with exclusive prices and offers
+              </h2>
+            </div>
       </section>
       </div>
   )
