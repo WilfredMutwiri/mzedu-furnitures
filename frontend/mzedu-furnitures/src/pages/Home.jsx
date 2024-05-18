@@ -10,6 +10,10 @@ import popular2 from '../images/popular2.jpeg'
 import popular3 from '../images/officeDesk1.jpeg'
 import newSign from '../images/sign.png'
 import dinningTable2 from '../images/dinningTable2.jpeg'
+import bedsAd from '../images/bedsAds.png'
+import diningAd from '../images/diningAd.jpg'
+import officeAd from '../images/officeAd.png'
+import sofasAd from '../images/sofasAd.png'
 import { useState,useEffect } from 'react'
 import { Button } from 'flowbite-react'
 export default function Home() {
@@ -134,6 +138,43 @@ export default function Home() {
             </div>
           </div>
 
+        </div>
+      </section>
+      {/* ads section */}
+      <section>
+        <div className='w-11/12 m-auto mt-5 mb-5'>
+        <div className='flex justify-center'>
+          <div className='block md:flex gap-10'>
+            <div className='flex gap-10' id='block1'>
+            <div className=' bg-gray-200 hover:bg-teal-900 hover:text-white cursor-pointer'>
+              <a href='#'>
+              <img className='w-40 md:w-44' src={bedsAd}/>
+              <h2 className='font-semibold text-lg text-center p-1'>Beds</h2>
+              </a>
+            </div>
+            <div className=' bg-gray-200 hover:bg-teal-900 hover:text-white cursor-pointer'>
+              <a href='#'>
+              <img className='w-40 md:w-44' src={sofasAd}/>
+              <h2 className='font-semibold text-lg text-center p-1'>Sofas</h2>
+              </a>
+            </div>
+            </div>
+            <div className='flex gap-10 mt-6 md:mt-0' id='block2'>
+            <div className=' bg-gray-200 hover:bg-teal-900 hover:text-white cursor-pointer'>
+              <a href='#'>
+              <img className='w-40 md:w-44' src={diningAd}/>
+              <h2 className='font-semibold text-lg text-center p-1'>Dining</h2>
+              </a>
+            </div>
+            <div className=' bg-gray-200 hover:bg-teal-900 hover:text-white cursor-pointer'>
+              <a href='#'>
+              <img className='w-40 md:w-44' src={officeAd}/>
+              <h2 className='font-semibold text-lg text-center p-1'>Office</h2>
+              </a>
+            </div>
+            </div>
+          </div>
+        </div>
         </div>
       </section>
       </div>
