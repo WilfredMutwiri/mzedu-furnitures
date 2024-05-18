@@ -9,18 +9,30 @@ import popular1 from '../images/popular1.jpeg'
 import popular2 from '../images/popular2.jpeg'
 import popular3 from '../images/officeDesk1.jpeg'
 import newSign from '../images/sign.png'
+import dinningTable2 from '../images/dinningTable2.jpeg'
 import { useState,useEffect } from 'react'
 import { Button } from 'flowbite-react'
 export default function Home() {
   const images=[banner1,banner2,banner3,banner4,banner5];
   const [currentImage,setCurrentImage]=useState(0)
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentImage((prevImage) => (prevImage === images.length - 1 ? 0 : prevImage + 1));
-        return () => clearInterval(interval);
-      }, 3000);
-    }, [images.length],
-  );
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage === images.length - 1 ? 0 : prevImage + 1));
+        // return () => clearInterval(interval);
+    }, 3000);
+  }, [images.length],
+  )
+  const dealimages=[popular1,dinningTable1,dinningTable2];
+  const [currentdealImage,setCurrentdealImage]=useState(0)
+  const changedealImage=(direction)=>{
+    setCurrentdealImage((prevDealImage)=>{
+      if(direction==="prev"){
+        return prevDealImage===0?dealimages.length-1:prevDealImage-1;
+      }else{
+        return prevDealImage===dealimages.length-1?0:prevDealImage+1;
+      }
+    })
+    }
   return (
     <div >
       <div className='max-w-[1400px] h-[780px] w-full m-auto'>
@@ -54,20 +66,20 @@ export default function Home() {
             </p>
           </div>
           <div className="pb-3 border-r-4 border-white bg-gray-300">
-            <img src={dinningTable1}/>
-            <img className="w-14 -mt-64 md:-mt-80 ml-52 md:ml-64 absolute" src={newSign} alt="" />
+            <img src={dealimages[currentdealImage]}/>
+            <img className="w-14 -mt-64 md:-mt-72 ml-52 md:ml-64 absolute" src={newSign} alt="" />
             <div className="block md:flex">
               <div>
               <h2 className="p-3 font-semibold">Complete Dinning Table</h2>
               <span className="p-3 text-red-600">Ksh 20,000 <span className="line-through text-black text-sm">Ksh 23,000</span></span>
               </div>
               <div className="flex gap-2 mt-2 h-9 ml-2 md:ml-0">
-                <Button>
+                <Button onClick={()=>changedealImage('prev')}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
                 </Button>
-                <Button>
+                <Button onClick={()=>changedealImage('next')}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
