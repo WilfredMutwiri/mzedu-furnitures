@@ -23,13 +23,31 @@ export default function Home() {
   }, [images.length],
   )
   const dealimages=[popular1,dinningTable1,dinningTable2];
-  const [currentdealImage,setCurrentdealImage]=useState(0)
+  const [currentdealImage,setCurrentdealImage]=useState(0);
+  const [currentImageName,setImageName]=useState(0);
+  const [imagePrice,setImagePrice]=useState(0);
+  const imageName=["Outdoor Tent","Complete Dinning Table","Living Room Table"]
+  const imagePrices=['20,000','16,000','28,500']
   const changedealImage=(direction)=>{
     setCurrentdealImage((prevDealImage)=>{
       if(direction==="prev"){
         return prevDealImage===0?dealimages.length-1:prevDealImage-1;
       }else{
         return prevDealImage===dealimages.length-1?0:prevDealImage+1;
+      }
+    });
+    setImageName((prevImageName)=>{
+      if(direction==="prev"){
+        return prevImageName===0?imageName.length-1:prevImageName-1;
+      }else{
+        return prevImageName===imageName.length-1?0:prevImageName+1
+      }
+    })
+    setImagePrice((prevImagePrice)=>{
+      if(direction==="prev"){
+        return prevImagePrice===0?imagePrices.length-1:prevImagePrice-1;
+      }else{
+        return prevImagePrice===imagePrices.length-1?0:prevImagePrice+1
       }
     })
     }
@@ -70,8 +88,8 @@ export default function Home() {
             <img className="w-14 -mt-64 md:-mt-72 ml-52 md:ml-64 absolute" src={newSign} alt="" />
             <div className="block md:flex">
               <div>
-              <h2 className="p-3 font-semibold">Complete Dinning Table</h2>
-              <span className="p-3 text-red-600">Ksh 20,000 <span className="line-through text-black text-sm">Ksh 23,000</span></span>
+              <h2 className="p-3 font-semibold">{imageName[currentImageName]}</h2>
+              <span className="p-3 text-red-600">Ksh {imagePrices[imagePrice]}</span>
               </div>
               <div className="flex gap-2 mt-2 h-9 ml-2 md:ml-0">
                 <Button onClick={()=>changedealImage('prev')}>
