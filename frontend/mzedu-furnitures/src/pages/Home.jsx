@@ -156,7 +156,7 @@ export default function Home() {
       </section>
       {/* ads section */}
       <section>
-        <div className='w-11/12 m-auto mt-5 mb-5'>
+        <div className='w-11/12 m-auto mt-5 mb-0 md:mb-5'>
         <div className='flex justify-center'>
           <div className='block md:flex gap-10'>
             <div className='flex gap-10' id='block1'>
@@ -208,7 +208,7 @@ export default function Home() {
         </div>
         </div>
 
-        <div className="w-10/12 m-auto block md:hidden">
+        <div className="w-10/12 m-auto block md:hidden -mt-8 md:-mt-0">
               <div className="flex gap-2 pt-10 pb-10 m-auto ">
                 <Button className='h-10 my-auto w-6' onClick={()=>changedecorImage('prev')}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-auto h-4">
@@ -225,7 +225,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className=' mt-5 text-white bg-teal-900 p-6 w-11/12 m-auto mb-5'>
+            <div className=' text-white bg-teal-900 p-6 w-11/12 m-auto mb-5 -mt-14 md:mt-5'>
               <p className='text-center leading-relaxed font-semibold text-lg'>
                 SAVE UP TO 25% OFF SOFAS!
               </p>
