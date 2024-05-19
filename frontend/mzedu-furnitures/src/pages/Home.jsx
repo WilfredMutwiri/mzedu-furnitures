@@ -31,12 +31,8 @@ import Arrival3 from '../images/Arrival3.jpeg'
 import Arrival4 from '../images/Arrival4.jpeg'
 import Arrival5 from '../images/Arrival5.jpeg'
 
-import halfStar from '../images/halfStar.png'
-import fullStar from '../images/fullStar.png'
-import emptyStar from '../images/emptyStar.png'
-
 import { useState,useEffect } from 'react'
-import { Button } from 'flowbite-react'
+import { Button,Rating } from 'flowbite-react'
 export default function Home() {
   const images=[banner1,banner2,banner3,banner4,banner5];
   const [currentImage,setCurrentImage]=useState(0)
@@ -512,13 +508,16 @@ export default function Home() {
       <section>
       <h2 className={`text-center font-Dancing text-2xl md:text-3xl pt-6 md:pt-10 pb-6 md:pb-10`}>~What Our Customers Have To Say~</h2>
         <div className='w-11/12 flex gap-6 m-auto pb-10'>
-          <div className={` bg-gray-300 p-3 rounded-md leading-relaxed shadow-sm shadow-blue-500`}>
+          <div className={`bg-gray-300 p-3 rounded-md leading-relaxed shadow-sm shadow-blue-500`}>
             <div className='flex gap-4 justify-center m-auto pt-2 pb-2'>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={halfStar}/>
-              <img className='w-3' src={emptyStar}/>
+            <Rating>
+            <Rating.Star className='text-red-600' />
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-white' filled={false} />
+            </Rating>
             </div>
             <p>{testimonies[currentTestimony]}</p>
             <h2 className='font-semibold'>@{testimoners[currentTestimoner]}<span className='font-normal pl-2 text-blue-600 hidden md:block'>/Facebook</span></h2>
@@ -537,11 +536,14 @@ export default function Home() {
           </div>
           <div className={`bg-gray-300 p-3 rounded-md leading-relaxed shadow-sm shadow-blue-500 hidden md:block`}>
           <div className='flex gap-4 justify-center m-auto pt-2 pb-2'>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={emptyStar}/>
-              <img className='w-3' src={emptyStar}/>
+          <Rating>
+            <Rating.Star className='text-red-600' />
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600' />
+            </Rating>
             </div>
             <p>
             Mzedu furniture and Deco never disappoints. Their executive desks and chairs turned my office into a sophisticated
@@ -552,11 +554,14 @@ export default function Home() {
           </div>
           <div className={` bg-gray-300 p-3 rounded-md leading-relaxed shadow-sm shadow-blue-500 hidden md:block`}>
           <div className='flex gap-4 justify-center m-auto pt-2 pb-2'>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
-              <img className='w-3' src={fullStar}/>
+          <Rating>
+            <Rating.Star className='text-red-600' />
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-red-600'/>
+            <Rating.Star className='text-white' filled={false}/>
+            <Rating.Star className='text-white' filled={false} />
+            </Rating>
             </div>
             <p>
             I rely on Mzedu furniture and Deco to bring my visions to life. Their collection allows
