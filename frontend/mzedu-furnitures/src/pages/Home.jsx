@@ -30,6 +30,11 @@ import Arrival2 from '../images/Arrival2.jpeg'
 import Arrival3 from '../images/Arrival3.jpeg'
 import Arrival4 from '../images/Arrival4.jpeg'
 import Arrival5 from '../images/Arrival5.jpeg'
+
+import halfStar from '../images/halfStar.png'
+import fullStar from '../images/fullStar.png'
+import emptyStar from '../images/emptyStar.png'
+
 import { useState,useEffect } from 'react'
 import { Button } from 'flowbite-react'
 export default function Home() {
@@ -66,6 +71,30 @@ export default function Home() {
   const featuredImagesPrice=['10,500','12,500','8,900','6,300','8300']
   const imagePrices=['20,000','16,000','28,500']
   const decorImages=[Decor1,Decor2]
+
+  // testimonies section
+  const testimonies=[
+  "Mzedu Furniture & Deco have a remarkable attention to detail skillset.I just purchased a sofa set from then and I still can't beleive the awesome appearance of my living room. Thank you!",
+  "Mzedu furniture and Deco never disappoints. Their executive desks and chairs turned my office into a sophisticated workspace. Their wide selection and commitment to excellence and perfection make them the go-to for furniture in Kenya.","I rely on Mzedu furniture and Deco to bring my visions to life. Their collection allows me to create bespoke spaces that exude sophistication. Their dedication toquality craftsmanship and timeless design is amazing."]
+  const [currentTestimoner,setCurrentTestimoner]=useState(0);
+  const [currentTestimony,setCurrentTestimony]=useState(0);
+  const testimoners=['Margaret Kiani','John Kimani','Judy Mwende'];
+  const changeTestimony=(direction)=>{
+    setCurrentTestimony((prevTestimony)=>{
+      if(direction==="prev"){
+        return prevTestimony===0?testimonies.length-1:prevTestimony-1;
+      }else{
+        return prevTestimony===testimonies.length-1?0:prevTestimony+1;
+      }
+    });
+    setCurrentTestimoner((prevTestimoner)=>{
+      if(direction==="prev"){
+        return prevTestimoner===0?testimoners.length-1:prevTestimoner-1;
+      }else{
+        return prevTestimoner===testimoners.length-1?0:prevTestimoner+1;
+      }
+    });
+  }
 
 // deals section
   const changedealImage=(direction)=>{
@@ -477,6 +506,66 @@ export default function Home() {
                 </svg>
                 </Button>
               </div>
+      </section>
+      {/* testimonies section */}
+      <hr className='w-11/12 m-auto' />
+      <section>
+      <h2 className={`text-center font-Dancing text-2xl md:text-3xl pt-6 md:pt-10 pb-6 md:pb-10`}>~What Our Customers Have To Say~</h2>
+        <div className='w-11/12 flex gap-6 m-auto pb-10'>
+          <div className={` bg-gray-300 p-3 rounded-md leading-relaxed shadow-sm shadow-blue-500`}>
+            <div className='flex gap-4 justify-center m-auto pt-2 pb-2'>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={halfStar}/>
+              <img className='w-3' src={emptyStar}/>
+            </div>
+            <p>{testimonies[currentTestimony]}</p>
+            <h2 className='font-semibold'>@{testimoners[currentTestimoner]}<span className='font-normal pl-2 text-blue-600 hidden md:block'>/Facebook</span></h2>
+            <div className='flex md:hidden justify-between pt-5'>
+            <Button className='h-10 my-auto w-14' onClick={()=>changeTestimony('prev')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-auto h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+            </Button>
+            <Button className='h-10 my-auto w-14' onClick={()=>changeTestimony('next')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </Button>
+            </div>
+          </div>
+          <div className={`bg-gray-300 p-3 rounded-md leading-relaxed shadow-sm shadow-blue-500 hidden md:block`}>
+          <div className='flex gap-4 justify-center m-auto pt-2 pb-2'>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={emptyStar}/>
+              <img className='w-3' src={emptyStar}/>
+            </div>
+            <p>
+            Mzedu furniture and Deco never disappoints. Their executive desks and chairs turned my office into a sophisticated
+            workspace. Their wide selection and commitment to excellence and perfection make them
+            the go-to for furniture in Kenya.
+            </p>
+            <h2 className='font-semibold pt-7'>John Kimani/<span className='font-normal pl-2 text-blue-600'>Instagram</span></h2>
+          </div>
+          <div className={` bg-gray-300 p-3 rounded-md leading-relaxed shadow-sm shadow-blue-500 hidden md:block`}>
+          <div className='flex gap-4 justify-center m-auto pt-2 pb-2'>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+              <img className='w-3' src={fullStar}/>
+            </div>
+            <p>
+            I rely on Mzedu furniture and Deco to bring my visions to life. Their collection allows
+            me to create bespoke spaces that exude sophistication. Their dedication to
+            quality craftsmanship and timeless design is amazing.
+            </p>
+            <h2 className='font-semibold'>Judy Mwende/ <span className='font-normal pl-2 text-blue-600'>Facebook</span></h2>
+          </div>
+        </div>
       </section>
       </div>
   )
