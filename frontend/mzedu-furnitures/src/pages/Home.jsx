@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import banner2 from '../images/banner2.jpg'
 import banner1 from '../images/banner1.jpg'
 import banner3 from '../images/banner3.jpg'
@@ -16,6 +16,11 @@ import officeAd from '../images/officeAd.png'
 import sofasAd from '../images/sofasAd.png'
 import Decor1 from '../images/luxurydecor.png'
 import Decor2 from '../images/decor2.png'
+import featured1 from '../images/featured1.jpeg'
+import featured2 from '../images/featured2.jpeg'
+import featured3 from '../images/featured3.jpeg'
+import featured4 from '../images/featured4.jpeg'
+import featured5 from '../images/featured5.jpeg'
 import { useState,useEffect } from 'react'
 import { Button } from 'flowbite-react'
 export default function Home() {
@@ -33,9 +38,50 @@ export default function Home() {
   const [currentImageName,setImageName]=useState(0);
   const [decorImage,setDecorImage]=useState(0)
   const [imagePrice,setImagePrice]=useState(0);
+  const [featuredImage,setFeaturedImage]=useState(0);
+  const [featureImageName,setFeaturedImageName]=useState(0)
+  const [featuredPrice,setFeaturedPrices]=useState(0)
+
+  const featuredImages=[featured1,featured2,featured3,featured4,featured5]
   const imageName=["Outdoor Tent","Complete Dinning Table","Living Room Table"]
+  const featuredImagesNames=["Gamming Chair","Outdoor Shade","Rounded Table","Flower Holder","Flower Grid"]
+  const featuredImagesPrice=['10,500','12,500','8,900','6,300','8300']
   const imagePrices=['20,000','16,000','28,500']
   const decorImages=[Decor1,Decor2]
+
+  // div reveal effect
+  const divRef=useRef(null)
+  const [isVisible,setIsVisible]=useState(false)
+  useEffect(()=>{
+    const observer=new IntersectionObserver(
+      ([entry])=>{
+        if(entry.isIntersecting){
+          setIsVisible(true)
+        }else{
+          setIsVisible(false)
+        }
+      },
+      {
+        threshold:0.1,
+      }
+    );
+    if(divRef.current){
+      observer.observe(divRef.current)
+    }
+    return()=>{
+        if(divRef.current){
+          observer.unobserve(divRef.current)
+        }
+    }
+    // const timer=setTimeout(()=>{
+    //   setIsVisible(true)
+    // },1000)
+    // return ()=>clearTimeout(timer)
+  },[])
+
+
+
+// deals section
   const changedealImage=(direction)=>{
     setCurrentdealImage((prevDealImage)=>{
       if(direction==="prev"){
@@ -59,7 +105,7 @@ export default function Home() {
       }
     })
     }
-
+// decoration advert section
     const changedecorImage=(direction)=>{
       setDecorImage((prevDecorImage)=>{
         if(direction==="prev"){
@@ -69,6 +115,30 @@ export default function Home() {
         }
       })
       }
+    // featured images section
+      const changeFeaturedImage=(direction)=>{
+        setFeaturedImage((prevFeaturedImage)=>{
+          if(direction==="prev"){
+            return prevFeaturedImage===0?featuredImages.length-1:prevFeaturedImage-1;
+          }else{
+            return prevFeaturedImage===featuredImages.length-1?0:prevFeaturedImage+1;
+          }
+        })
+        setFeaturedImageName((prevImageName)=>{
+          if(direction==="prev"){
+            return prevImageName===0?featuredImagesNames.length-1:prevImageName-1;
+          }else{
+            return prevImageName===featuredImagesNames.length-1?0:prevImageName+1
+          }
+        })
+        setFeaturedPrices((prevPrice)=>{
+          if(direction==="prev"){
+            return prevPrice===0?featuredImagesPrice.length-1:prevPrice-1;
+          }else{
+            return prevPrice===featuredImagesPrice.length-1?0:prevPrice+1
+          }
+        })
+        }
   return (
     <div >
       <div className='max-w-[1400px] h-[780px] w-full m-auto'>
@@ -225,12 +295,107 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className=' text-white bg-teal-900 p-6 w-11/12 m-auto mb-5 -mt-14 md:mt-5'>
+            <div className=' text-white bg-teal-900 p-6 w-11/12 m-auto mb-5 -mt-14 md:mt-5 mb-10'>
               <p className='text-center leading-relaxed font-semibold text-lg'>
                 SAVE UP TO 25% OFF SOFAS!
               </p>
               <h2 className='text-center'>
               *Terms & Condtitons Apply. Save on almost everything with exclusive prices and offers
+              </h2>
+            </div>
+      </section>
+      {/* explanation one */}
+      <hr className='w-10/12 m-auto'/>
+      <section>
+        <div className='w-11/12 pt-10 m-auto'>
+          <h2 className='text-3xl font-Dancing text-center pb-10'>Your choice,Our command!</h2>
+          <p className='leading-relaxed pb-5'>
+          At Mzedu Furniture & Deco, we offer an extensive selection of furniture, 
+          ranging from cool and captivating accents to eye-catching centrepieces, we ensure that you
+          find everything necessary to shape your dream home. We understand that your living space
+          is a personal expedition, we have thoughtfully designed a diverse range of products,
+          showcasing exceptional craftsmanship that allows you to weave your own narrative.
+          All you desire,we deliver.Your choice will forever be our command!
+          </p>
+        </div>
+      </section>
+      <hr className='w-11/12 m-auto'/>
+      {/* Featured Products */}
+      <section>
+        <div className={`mt-5 w-56 m-auto border-black border-t-4 border-b-4 `}>
+        <h2 className='text-center font-Dancing text-3xl p-2'>Featured Products</h2>
+        </div>
+        <div className={`w-11/12 m-auto pt-10 pb-5 hidden md:flex gap-6 transition-opacity duration-100`} id='visibleBig'>
+          <div className=''>
+            <img className='w-52 h-[200px] object-fill' src={featured1}/>
+            <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Gamming Chair</h2>
+            <h3 className=' text-red-500'>Ksh 10,500</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div className=''>
+          <img className='w-52' src={featured2}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Outdoor Shade</h2>
+            <h3 className=' text-red-500'>Ksh 12,500</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div>
+          <img className='w-52' src={featured3}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Rounded Table</h2>
+            <h3 className=' text-red-500'>Ksh 8,900</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div>
+          <img className='w-52' src={featured4}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Flower Holder</h2>
+            <h3 className=' text-red-500'>Ksh 6,300</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div>
+          <img className='w-52' src={featured5}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Flower Grid</h2>
+            <h3 className=' text-red-500'>Ksh 8,300</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+        </div>
+        {/* visible small device */}
+        <div className="flex md:hidden gap-2 m-auto justify-center pt-10 pb-24">
+                <Button className='h-10 my-auto w-6' onClick={()=>changeFeaturedImage('prev')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-auto h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+                </Button>
+                <div id='decor'>
+                <img className='w-60 h-60 object-contain mx-auto' src={featuredImages[featuredImage]}/>
+                <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>{featuredImagesNames[featureImageName]}</h2>
+            <h3 className=' text-red-500'>{featuredImagesPrice[featuredPrice]}</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+                </div>
+                <Button className='h-10 my-auto w-6' onClick={()=>changeFeaturedImage('next')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+                </Button>
+              </div>
+      </section>
+      <section>
+      <div className=' text-white bg-red-600 p-6 w-11/12 m-auto -mt-14 md:mt-5 mb-10'>
+              <p className='text-center leading-relaxed font-semibold text-lg'>
+                WE OFFER FREE DELIVERY FOR ABOVE 100,000!
+              </p>
+              <h2 className='text-center'>
+              *Terms & Condtitons Apply. Save on your transport! Breath, we've got you covered!
               </h2>
             </div>
       </section>
