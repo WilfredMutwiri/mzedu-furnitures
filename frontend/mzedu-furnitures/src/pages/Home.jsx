@@ -4,10 +4,12 @@ import banner1 from '../images/banner1.jpg'
 import banner3 from '../images/banner3.jpg'
 import banner4 from '../images/banner4.jpg'
 import banner5 from '../images/banner5.jpg'
+
 import dinningTable1 from '../images/dinningTable1.jpeg'
 import popular1 from '../images/popular1.jpeg'
 import popular2 from '../images/popular2.jpeg'
 import popular3 from '../images/officeDesk1.jpeg'
+
 import newSign from '../images/sign.png'
 import dinningTable2 from '../images/dinningTable2.jpeg'
 import bedsAd from '../images/bedsAds.png'
@@ -16,11 +18,18 @@ import officeAd from '../images/officeAd.png'
 import sofasAd from '../images/sofasAd.png'
 import Decor1 from '../images/luxurydecor.png'
 import Decor2 from '../images/decor2.png'
+
 import featured1 from '../images/featured1.jpeg'
 import featured2 from '../images/featured2.jpeg'
 import featured3 from '../images/featured3.jpeg'
 import featured4 from '../images/featured4.jpeg'
 import featured5 from '../images/featured5.jpeg'
+// arrivals
+import Arrival1 from '../images/Arrival1.jpeg'
+import Arrival2 from '../images/Arrival2.jpeg'
+import Arrival3 from '../images/Arrival3.jpeg'
+import Arrival4 from '../images/Arrival4.jpeg'
+import Arrival5 from '../images/Arrival5.jpeg'
 import { useState,useEffect } from 'react'
 import { Button } from 'flowbite-react'
 export default function Home() {
@@ -34,10 +43,19 @@ export default function Home() {
   }, [images.length],
   )
   const dealimages=[popular1,dinningTable1,dinningTable2];
+
+  const arrivalImages=[Arrival1,Arrival2,Arrival3,Arrival4,Arrival5]
+  const [currentArrivalImage,setCurrentArrivalImage]=useState(0);
+  const [arrivalName,setArrivalName]=useState(0);
+  const [arrivalPrice,setArrivalPrice]=useState(0);
+  const arrivalPrices=['12,000','15,000','10,000','23,000','25,600']
+  const arrivalNames=["Dining Set","Table Talk Set","Wall Clock","Infinity Cup","Wall Decoraters"]
+
   const [currentdealImage,setCurrentdealImage]=useState(0);
   const [currentImageName,setImageName]=useState(0);
   const [decorImage,setDecorImage]=useState(0)
   const [imagePrice,setImagePrice]=useState(0);
+
   const [featuredImage,setFeaturedImage]=useState(0);
   const [featureImageName,setFeaturedImageName]=useState(0)
   const [featuredPrice,setFeaturedPrices]=useState(0)
@@ -48,38 +66,6 @@ export default function Home() {
   const featuredImagesPrice=['10,500','12,500','8,900','6,300','8300']
   const imagePrices=['20,000','16,000','28,500']
   const decorImages=[Decor1,Decor2]
-
-  // div reveal effect
-  const divRef=useRef(null)
-  const [isVisible,setIsVisible]=useState(false)
-  useEffect(()=>{
-    const observer=new IntersectionObserver(
-      ([entry])=>{
-        if(entry.isIntersecting){
-          setIsVisible(true)
-        }else{
-          setIsVisible(false)
-        }
-      },
-      {
-        threshold:0.1,
-      }
-    );
-    if(divRef.current){
-      observer.observe(divRef.current)
-    }
-    return()=>{
-        if(divRef.current){
-          observer.unobserve(divRef.current)
-        }
-    }
-    // const timer=setTimeout(()=>{
-    //   setIsVisible(true)
-    // },1000)
-    // return ()=>clearTimeout(timer)
-  },[])
-
-
 
 // deals section
   const changedealImage=(direction)=>{
@@ -136,6 +122,30 @@ export default function Home() {
             return prevPrice===0?featuredImagesPrice.length-1:prevPrice-1;
           }else{
             return prevPrice===featuredImagesPrice.length-1?0:prevPrice+1
+          }
+        })
+        }
+        // new Arrivals section
+      const changeNewArrival=(direction)=>{
+        setCurrentArrivalImage((prevArrivalImage)=>{
+          if(direction==="prev"){
+            return prevArrivalImage===0?arrivalImages.length-1:prevArrivalImage-1;
+          }else{
+            return prevArrivalImage===arrivalImages.length-1?0:prevArrivalImage+1;
+          }
+        })
+        setArrivalName((prevArrivalName)=>{
+          if(direction==="prev"){
+            return prevArrivalName===0?arrivalNames.length-1:prevArrivalName-1;
+          }else{
+            return prevArrivalName===arrivalNames.length-1?0:prevArrivalName+1
+          }
+        })
+        setArrivalPrice((prevPrice)=>{
+          if(direction==="prev"){
+            return prevPrice===0?arrivalPrices.length-1:prevPrice-1;
+          }else{
+            return prevPrice===arrivalPrices.length-1?0:prevPrice+1
           }
         })
         }
@@ -398,6 +408,75 @@ export default function Home() {
               *Terms & Condtitons Apply. Save on your transport! Breath, we've got you covered!
               </h2>
             </div>
+      </section>
+      {/* New Arrivals Section */}
+      <section>
+        <div className={`mt-5 w-56 m-auto border-black border-t-4 border-b-4 `}>
+        <h2 className='text-center font-Dancing text-3xl p-2'>New Arrivals</h2>
+        </div>
+        <div className={`w-11/12 m-auto pt-10 pb-5 hidden md:flex gap-6 transition-opacity duration-100`} id='visibleBig'>
+          <div className=''>
+            <img className='w-52 h-[200px] object-fill' src={Arrival1}/>
+            <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Dining Set</h2>
+            <h3 className=' text-red-500'>Ksh 12,000</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div className=''>
+          <img className='w-52' src={Arrival2}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Table Talk Set</h2>
+            <h3 className=' text-red-500'>Ksh 15,000</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div>
+          <img className='w-52 h-[200px] object-cover' src={Arrival3}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Wall Clock</h2>
+            <h3 className=' text-red-500'>Ksh 10,000</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div>
+          <img className='w-52 h-[200px] object-cover' src={Arrival4}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Infinity Cup</h2>
+            <h3 className=' text-red-500'>Ksh 23,000</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div>
+          <img className='w-52 h-[200px] object-cover' src={Arrival5}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Wall Decorators</h2>
+            <h3 className=' text-red-500'>Ksh 25,600</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+        </div>
+        {/* visible small device */}
+        <div className="flex md:hidden gap-2 m-auto justify-center pt-10 pb-24">
+                <Button className='h-10 my-auto w-6' onClick={()=>changeNewArrival('prev')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-auto h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+                </Button>
+                <div id='decor'>
+                <img className='w-60 h-60 object-cover mx-auto' src={arrivalImages[currentArrivalImage]}/>
+                <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>{arrivalNames[arrivalName]}</h2>
+            <h3 className=' text-red-500'>{arrivalPrices[arrivalPrice]}</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+                </div>
+                <Button className='h-10 my-auto w-6' onClick={()=>changeNewArrival('next')}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+                </Button>
+              </div>
       </section>
       </div>
   )

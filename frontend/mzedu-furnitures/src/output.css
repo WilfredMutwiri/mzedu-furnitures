@@ -1527,6 +1527,34 @@ input[type="range"]::-ms-fill-lower{
   height: 100vh;
 }
 
+.h-56{
+  height: 14rem;
+}
+
+.h-\[220px\]{
+  height: 220px;
+}
+
+.h-\[218px\]{
+  height: 218px;
+}
+
+.h-\[210px\]{
+  height: 210px;
+}
+
+.h-\[207px\]{
+  height: 207px;
+}
+
+.h-\[205px\]{
+  height: 205px;
+}
+
+.h-\[300px\]{
+  height: 300px;
+}
+
 .max-h-\[90dvh\]{
   max-height: 90dvh;
 }
