@@ -3,6 +3,7 @@ import logo from '../images/logo.webp'
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Button, Navbar } from "flowbite-react";
+import { Link } from 'react-router-dom';
 export default function NavBar() {
   let adText=["Get 25% discount on purchases above Ksh 10,000","Get quality furniture at an affordable price","We offer free delivery"]
   const [newText,setNewText]=useState(0)
@@ -23,7 +24,9 @@ export default function NavBar() {
       <span className="pl-2 text-pink-800 self-center whitespace-nowrap text-2xl md:text-3xl dark:text-white font-Dancing">Mzedu Furniture</span>
     </Navbar.Brand>
     <div className="flex md:order-2">
+      <Link to='/signin'>
       <Button gradientDuoTone="pinkToOrange">Sign In</Button>
+      </Link>
       <Navbar.Toggle />
     </div>
     <Navbar.Collapse>
