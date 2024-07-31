@@ -43,7 +43,38 @@ const signup=async(req,res,next)=>{
         console.log(error);
     }
 }
-
+// signin
+const signin=async(req,res,next)=>{
+    const {email,password}=req.body;
+    if(
+        !email ||
+        !password ||
+        email===""||
+        password===""
+    ){
+        console.log("All fields must be filled");
+    }
+    try {
+        const validUser=await User.findOne({email});
+        if(!validUser){
+            console.log("User not found");
+        }
+        // create token
+        const token=jwt.sign({id:validUser._id},process.env.JWT_SECRET,{expiresIn:"1h"})
+        // separate password from response
+        const {password:pass,...rest}=validUser._doc;
+        // create cookie
+        res.status(200)
+        .cookie('access_token'.token,{
+            httpOnly:true
+        })
+        .json(rest)
+        console.log("login successfull!");
+    } catch (error) {
+        console.log(error);
+    }
+}
 module.exports={
-    signup
+    signup,
+    signin
 }
