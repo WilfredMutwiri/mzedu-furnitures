@@ -1,12 +1,15 @@
 const User=require('../Models/userModel');
 const bcryptjs=require('bcryptjs');
 const jwt=require('jsonwebtoken');
+const errorHandler = require('../utils/errorHandler');
 
+// strong password regex
 const strongPassword=(password)=>{
 const regex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 return regex.test(password)
 }
 
+// signup
 const signup=async(req,res,next)=>{
     const {userName,email,password}=req.body;
     if(
@@ -17,19 +20,19 @@ const signup=async(req,res,next)=>{
         password ===""||
         email=== ""
     ){
-        console.log("All fields must be filled");
+        return next(errorHandler(400,"All fields must be filled!"))
     }
     if(!strongPassword(password)){
-        console.log("Enter a strong password");
+        return next(errorHandler(400,"Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character."))
     }
     try {
         const existingUser=await User.findOne({userName});
         if(existingUser){
-            console.log("UserName already in use");
+            return next(errorHandler(400,"Username already in use"))
         }
         const existingEmail=await User.findOne({email});
         if(existingEmail){
-            console.log("Email already in use");
+            return next(errorHandler(400,"Email already exists"))
         }
         const hashPassword=bcryptjs.hashSync(password,10);
         const newUser=new User({
@@ -43,6 +46,7 @@ const signup=async(req,res,next)=>{
         console.log(error);
     }
 }
+
 // signin
 const signin=async(req,res,next)=>{
     const {email,password}=req.body;
@@ -52,12 +56,12 @@ const signin=async(req,res,next)=>{
         email===""||
         password===""
     ){
-        console.log("All fields must be filled");
+        return next(errorHandler(400,"All fields must be filled!"))
     }
     try {
         const validUser=await User.findOne({email});
         if(!validUser){
-            console.log("User not found");
+            return next(errorHandler(400,"User not found"))
         }
         // create token
         const token=jwt.sign({id:validUser._id},process.env.JWT_SECRET,{expiresIn:"1h"})
@@ -71,10 +75,22 @@ const signin=async(req,res,next)=>{
         .json(rest)
         console.log("login successfull!");
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 }
+
+// signout
+const signout=(req,res,next)=>{
+    try {
+        res.clearCookie('access_token').status(200).json({message:"Signout successful!"})
+    } catch (error) {
+        next(error)   
+    }
+}
+
+
 module.exports={
     signup,
-    signin
+    signin,
+    signout
 }
