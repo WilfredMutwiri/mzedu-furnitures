@@ -1,49 +1,82 @@
 import React from 'react'
-import signInImg from '../images/signup.jpg'
+import signInImg from '../images/signup-removebg-preview.png'
 import { useState,useEffect } from 'react'
-import { Button, Label, Spinner, TextInput } from 'flowbite-react'
+import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react'
+import { SERVER_URL } from '../constants/serverURL';
+import {useNavigate} from 'react-router-dom'
 export default function Signup() {
+    const Navigate=useNavigate()
     const [welcomeTxt,setWelcomeTxt]=useState("Welcome Back!");
     const [isloading,setIsLoading]=useState(false);
     const [formData,setFormData]=useState([]);
-    const [showpassword,setShowpassword]=useState(false)
+    const [showpassword,setShowpassword]=useState(false);
+    const [errorMessage,setErrorMessage]=useState("");
+    const [successMessage,setSuccessMessage]=useState(false)
 
     const handleChange=(e)=>{
         setFormData({...formData,[e.target.id]:e.target.value.trim()})
-        console.log(formData);
     }
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        setIsLoading(true)
+        setIsLoading(true);
+        setErrorMessage("");
+        setSuccessMessage(false);
+        if(!formData.userName ||!formData.email || !formData.password){
+            return setErrorMessage("All fields must be filled")
+        }
+        try {
+            const res=await fetch(SERVER_URL+'/api/user/signup',{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(formData)
+            });
+            const data=await res.json();
+            if(!res.ok){
+                setErrorMessage(data.message);
+                setIsLoading(true);
+                return;
+            }
+            setIsLoading(false);
+            setSuccessMessage(true);
+            setSuccessMessage("Account Created Successfully!")
+            Navigate('/signin')
+        } catch (error) {
+            setErrorMessage(error.message);
+            setIsLoading(false);
+            setSuccessMessage(false);
+        }
     }
   return (
     <>
     <div className='w-full '>
-        <div className='w-11/12 md:w-10/12 block md:flex gap-6 pt-12 pb-5 mx-auto'>
-        <div className='flex-1'>
-            <img src={signInImg} alt='signin illustration'/>
+        <div className='w-11/12 md:w-10/12 block md:flex gap-6 pt-12 mx-auto'>
+        <div className='flex-1 bg-gray-100 p-3 rounded-md'>
+            <h2 className='font-semibold text-2xl text-orange-500 text-center'>Welcome to Mzedu furniture & Deco</h2>
+            <h3 className='font-semibold text-2xl text-pink-800 text-center pt-3'>Let's Get You started</h3>
+            <img src={signInImg} className='w-10/12' alt='signin illustration'/>
         </div>
         <div className='flex-1 mt-10 md:mt-0'>
-            <h2 className='font-semibold text-2xl text-orange-500'>SIGN UP</h2>
-            <p className='text-cyan-700'>create an account today! Manage your business with ease.</p>
+            <h2 className='font-semibold text-xl text-cyan-700'>Create Your Account</h2>
             <form className='pt-4 flex flex-col gap-3' onSubmit={handleSubmit}>
             <Label value='userName'/>
                 <TextInput 
-                placeholder='mark'
+                placeholder='Your Username'
                 onChange={handleChange}
                 id='userName'
                 required
                 />
                 <Label value='Email Address'/>
                 <TextInput 
-                placeholder='user@gmail.com'
+                placeholder='Your Email Address'
                 onChange={handleChange}
                 id='email'
                 required
                 />
                 <Label value='Password'/>
                 <TextInput
-                placeholder='Examplepass@2024'
+                placeholder='Your Password'
                 type={showpassword ? 'text':'password'}
                 onChange={handleChange}
                 id='password'
@@ -69,10 +102,21 @@ export default function Signup() {
                     }
                 </Button>
             </form>
-            <p className='pt-4'>
+            <p className='pt-4 text-sm'>
                 Already have an account? <a className='text-orange-500 hover:text-cyan-700' href='/signin'>Login</a>
             </p>
-
+            {
+                errorMessage && 
+                <Alert color="failure" className='mt-5'>
+                    {errorMessage}
+                </Alert>
+            }
+            {
+                successMessage &&
+                <Alert color="success" className='mt-5'>
+                    {successMessage}
+                </Alert>
+            }
         </div>
         </div>
 

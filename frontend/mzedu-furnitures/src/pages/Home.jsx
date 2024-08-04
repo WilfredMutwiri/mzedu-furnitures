@@ -1,4 +1,7 @@
 import React, { useRef } from 'react'
+import { Carousel, Label } from "flowbite-react";
+import { FaArrowRight } from "react-icons/fa6";
+
 import banner2 from '../images/banner2.jpg'
 import banner1 from '../images/banner1.jpg'
 import banner3 from '../images/banner3.jpg'
@@ -18,12 +21,18 @@ import officeAd from '../images/officeAd.png'
 import sofasAd from '../images/sofasAd.png'
 import Decor1 from '../images/luxurydecor.png'
 import Decor2 from '../images/decor2.png'
-
+// featured funiture
 import featured1 from '../images/featured1.jpeg'
 import featured2 from '../images/featured2.jpeg'
 import featured3 from '../images/featured3.jpeg'
 import featured4 from '../images/featured4.jpeg'
 import featured5 from '../images/featured5.jpeg'
+import featured6 from '../images/featured6.webp'
+import featured7 from '../images/featured7.webp'
+import featured8 from '../images/featured8.webp'
+import featured9 from '../images/featured9.webp'
+import featured10 from '../images/featured10.webp'
+
 // arrivals
 import Arrival1 from '../images/Arrival1.jpeg'
 import Arrival2 from '../images/Arrival2.jpeg'
@@ -60,11 +69,11 @@ export default function Home() {
   const [featuredImage,setFeaturedImage]=useState(0);
   const [featureImageName,setFeaturedImageName]=useState(0)
   const [featuredPrice,setFeaturedPrices]=useState(0)
-
-  const featuredImages=[featured1,featured2,featured3,featured4,featured5]
+// features products
+  const featuredImages=[featured1,featured2,featured3,featured4,featured5,featured6,featured7,featured8,featured10,featured9]
   const imageName=["Outdoor Tent","Complete Dinning Table","Living Room Table"]
-  const featuredImagesNames=["Gamming Chair","Outdoor Shade","Rounded Table","Flower Holder","Flower Grid"]
-  const featuredImagesPrice=['10,500','12,500','8,900','6,300','8300']
+  const featuredImagesNames=["Gamming Chair","Outdoor Shade","Rounded Table","Flower Holder","Flower Grid","Office Mahogany Desk","Glassdoor Office Desk","Office Chair","Dining set","Gaming chair Armless"]
+  const featuredImagesPrice=['10,500','12,500','8,900','6,300','8300',"14500","20,500","9,900","26,300","8,300"]
   const imagePrices=['20,000','16,000','28,500']
   const decorImages=[Decor1,Decor2]
 
@@ -181,7 +190,7 @@ export default function Home() {
         <div className='pt-16 md:pt-24'>
           <div className='flex w-full md:w-96 mx-auto'>
           <div className='w-52 mx-auto border-r-4 border-white z-50 p-3 font-bold'>
-          <h1 className=' text-center text-orange-500 font-semibold text-5xl md:text-7xl font-Dancing'>Mzedu</h1>
+          <h1 className=' text-center text-orange-500 font-semibold text-5xl md:text-7xl font-dancing'>Mzedu</h1>
           </div>
           <div className='w-64 text-lg md:text-xl font-semibold text-white z-50 p-3'>
             <h2>Where quality meets passion</h2>
@@ -357,12 +366,15 @@ export default function Home() {
       <hr className='w-11/12 m-auto'/>
       {/* Featured Products */}
       <section>
-        <div className={`mt-5 w-56 m-auto border-black border-t-4 border-b-4 `}>
-        <h2 className='text-center font-Dancing text-3xl p-2'>Featured Products</h2>
+        <div className={`mt-5 w-72 m-auto border-black border-t-2 md:border-t-4 border-b-2 md:border-b-4 `}>
+        <h2 className='text-center font-dancing text-xl md:text-3xl p-2'>Featured Products</h2>
+        <Label className='pt-3 right-12 absolute my-auto flex gap-1 text-cyan-700 hover:text-red-600 cursor-pointer'>View all <span><FaArrowRight className='text-sm md:text-lg mt-1 md:mt-0'/></span></Label>
         </div>
-        <div className={`w-11/12 m-auto pt-10 pb-5 hidden md:flex gap-6 transition-opacity duration-100`} id='visibleBig'>
+        <div className='flex flex-col gap-2 mt-2 md:mt-0'>
+          {/* first features products div */}
+          <div className={`w-[97%] md:w-11/12 m-auto pt-10 pb-5 flex flex-wrap gap-4 md:gap-6 transition-opacity duration-100`} id='visibleBig'>
           <div className=''>
-            <img className='w-52 h-[200px] object-fill' src={featured1}/>
+            <img className='w-40 md:w-52 h-[200px] object-fill' src={featured1}/>
             <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Gamming Chair</h2>
             <h3 className=' text-red-500'>Ksh 10,500</h3>
@@ -370,7 +382,7 @@ export default function Home() {
             </div>
           </div>
           <div className=''>
-          <img className='w-52' src={featured2}/>
+          <img className='w-40 md:w-52 h-[200px] object-fill' src={featured2}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Outdoor Shade</h2>
             <h3 className=' text-red-500'>Ksh 12,500</h3>
@@ -378,7 +390,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-          <img className='w-52' src={featured3}/>
+          <img className='w-40 md:w-52 h-[200px] object-cover' src={featured3}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Rounded Table</h2>
             <h3 className=' text-red-500'>Ksh 8,900</h3>
@@ -386,7 +398,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-          <img className='w-52' src={featured4}/>
+          <img className='w-40 md:w-52 h-[200px] object-cover' src={featured4}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Flower Holder</h2>
             <h3 className=' text-red-500'>Ksh 6,300</h3>
@@ -394,16 +406,63 @@ export default function Home() {
             </div>
           </div>
           <div>
-          <img className='w-52' src={featured5}/>
+          <img className='w-40 md:w-52 h-[200px] object-cover' src={featured5}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Flower Grid</h2>
             <h3 className=' text-red-500'>Ksh 8,300</h3>
             <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
             </div>
           </div>
+          
+        </div>
+        {/* second featured products div */}
+        <div className={`w-11/12 m-auto pt-5 pb-5 hidden md:flex gap-6 transition-opacity duration-100`} id='visibleBig'>
+          <div className=''>
+            <img className='w-52 h-[200px] object-fill' src={featured6}/>
+            <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Office Mahogany Desk</h2>
+            <h3 className=' text-red-500'>Ksh 14,500</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+
+          <div className=''>
+          <img className='w-52 h-[200px] object-fill' src={featured7}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Glassdoor Office Desk</h2>
+            <h3 className=' text-red-500'>Ksh 20,500</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+
+          <div>
+          <img className='w-52 h-[200px] object-fill' src={featured8}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Office Chair</h2>
+            <h3 className=' text-red-500'>Ksh 9,900</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div>
+          <img className='w-52 h-[200px] object-fill' src={featured10}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
+            <h2 className=''>Dining set</h2>
+            <h3 className=' text-red-500'>Ksh 26,300</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+          <div className='w-52'>
+          <img className='w-52 h-[200px] object-fill' src={featured9}/>
+          <div className='p-2 flex flex-col gap-2 bg-gray-200 '>
+            <h2 className=''>Gaming chair Armless</h2>
+            <h3 className=' text-red-500'>Ksh 8,300</h3>
+            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
+            </div>
+          </div>
+        </div>
         </div>
         {/* visible small device */}
-        <div className="flex md:hidden gap-2 m-auto justify-center pt-10 pb-24">
+        {/* <div className="flex md:hidden gap-2 m-auto justify-center pt-10 pb-24">
                 <Button className='h-10 my-auto w-6' onClick={()=>changeFeaturedImage('prev')}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-auto h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -422,10 +481,10 @@ export default function Home() {
                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
                 </Button>
-              </div>
+              </div> */}
       </section>
       <section>
-      <div className=' text-white bg-red-600 p-6 w-11/12 m-auto -mt-14 md:mt-5 mb-10'>
+      <div className=' text-white bg-red-600 p-6 w-11/12 m-auto mt-14 md:mt-5 mb-10'>
               <p className='text-center leading-relaxed font-semibold text-lg'>
                 WE OFFER FREE DELIVERY FOR ABOVE 100,000!
               </p>

@@ -5,6 +5,7 @@ import {BannerComponent } from './components/Banner'
 import { FooterComp } from './components/Footer'
 import Signup from './components/signup'
 import Signin from './components/signin'
+import Dashboard from './Dashboard/admiDashboard'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
     <Route path="/" element={<Home/>}/>
     <Route path='/signup' element={<Signup/>}/>
     <Route path='/signin' element={<Signin/>}/>
+    <Route path='/dashboard' element={<Dashboard/>}/>
   </Routes>
   <FooterComp/>
 </Router>

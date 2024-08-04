@@ -6,7 +6,7 @@ import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsLinkedin, BsTwitter, B
 
 export function FooterComp() {
   return (
-    <Footer container className="bg-gray-100 border-t-4 mt-10">
+    <Footer container className="bg-gray-100 border-t-4">
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
