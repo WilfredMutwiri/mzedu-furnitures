@@ -42,6 +42,7 @@ import Arrival5 from '../images/Arrival5.jpeg'
 
 import { useState,useEffect } from 'react'
 import { Button,Rating } from 'flowbite-react'
+import { Link } from 'react-router-dom';
 export default function Home() {
   const images=[banner1,banner2,banner3,banner4,banner5];
   const [currentImage,setCurrentImage]=useState(0)
@@ -368,13 +369,17 @@ export default function Home() {
       <section>
         <div className={`mt-5 w-72 m-auto border-black border-t-2 md:border-t-4 border-b-2 md:border-b-4 `}>
         <h2 className='text-center font-dancing text-xl md:text-3xl p-2'>Featured Products</h2>
+        <Link to="/featuredProducts">
         <Label className='pt-3 right-12 absolute my-auto flex gap-1 text-cyan-700 hover:text-red-600 cursor-pointer'>View all <span><FaArrowRight className='text-sm md:text-lg mt-1 md:mt-0'/></span></Label>
+        </Link>
         </div>
         <div className='flex flex-col gap-2 mt-2 md:mt-0'>
           {/* first features products div */}
-          <div className={`w-[97%] md:w-11/12 m-auto pt-10 pb-5 flex flex-wrap gap-4 md:gap-6 transition-opacity duration-100`} id='visibleBig'>
+          <div className={`w-11/12 m-auto pt-10 pb-5 fl grid grid-row-3 md:flex gap-3 md:gap-6 transition-opacity duration-100 `} id='visibleBig'>
+          {/* Grid 1 */}
+          <div className='grid grid-cols-2 gap-4 mb-2'>
           <div className=''>
-            <img className='w-40 md:w-52 h-[200px] object-fill' src={featured1}/>
+            <img className='w-40 md:w-52 h-[155px] object-fill' src={featured1}/>
             <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Gamming Chair</h2>
             <h3 className=' text-red-500'>Ksh 10,500</h3>
@@ -382,106 +387,59 @@ export default function Home() {
             </div>
           </div>
           <div className=''>
-          <img className='w-40 md:w-52 h-[200px] object-fill' src={featured2}/>
+          <img className='w-40 md:w-52 h-[155px] object-fill' src={featured2}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Outdoor Shade</h2>
             <h3 className=' text-red-500'>Ksh 12,500</h3>
             <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
             </div>
           </div>
+          </div>
+          {/* grid 2 */}
+          <div className='grid grid-cols-2 gap-4 mb-2'>
           <div>
-          <img className='w-40 md:w-52 h-[200px] object-cover' src={featured3}/>
+          <img className='w-40 md:w-52 h-[155px] object-cover' src={featured3}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Rounded Table</h2>
             <h3 className=' text-red-500'>Ksh 8,900</h3>
             <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
             </div>
           </div>
+
           <div>
-          <img className='w-40 md:w-52 h-[200px] object-cover' src={featured4}/>
+          <img className='w-40 md:w-52 h-[155px] object-cover' src={featured4}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Flower Holder</h2>
             <h3 className=' text-red-500'>Ksh 6,300</h3>
             <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
             </div>
           </div>
+          </div>
+          {/* grid 3 */}
+          <div className='grid grid-cols-2 gap-4 mb-2'>
           <div>
-          <img className='w-40 md:w-52 h-[200px] object-cover' src={featured5}/>
+          <img className='w-40 md:w-52 h-[155px] object-fill' src={featured5}/>
           <div className='p-2 flex flex-col gap-2 bg-gray-200'>
             <h2 className=''>Flower Grid</h2>
             <h3 className=' text-red-500'>Ksh 8,300</h3>
             <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
             </div>
           </div>
-          
-        </div>
-        {/* second featured products div */}
-        <div className={`w-11/12 m-auto pt-5 pb-5 hidden md:flex gap-6 transition-opacity duration-100`} id='visibleBig'>
           <div className=''>
-            <img className='w-52 h-[200px] object-fill' src={featured6}/>
+            <img className='w-40 md:w-52 h-[155px] object-fill' src={featured6}/>
             <div className='p-2 flex flex-col gap-2 bg-gray-200'>
-            <h2 className=''>Office Mahogany Desk</h2>
+            <h2 className=''>Office Desk</h2>
             <h3 className=' text-red-500'>Ksh 14,500</h3>
             <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
             </div>
           </div>
-
-          <div className=''>
-          <img className='w-52 h-[200px] object-fill' src={featured7}/>
-          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
-            <h2 className=''>Glassdoor Office Desk</h2>
-            <h3 className=' text-red-500'>Ksh 20,500</h3>
-            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
-            </div>
-          </div>
-
-          <div>
-          <img className='w-52 h-[200px] object-fill' src={featured8}/>
-          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
-            <h2 className=''>Office Chair</h2>
-            <h3 className=' text-red-500'>Ksh 9,900</h3>
-            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
-            </div>
-          </div>
-          <div>
-          <img className='w-52 h-[200px] object-fill' src={featured10}/>
-          <div className='p-2 flex flex-col gap-2 bg-gray-200'>
-            <h2 className=''>Dining set</h2>
-            <h3 className=' text-red-500'>Ksh 26,300</h3>
-            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
-            </div>
-          </div>
-          <div className='w-52'>
-          <img className='w-52 h-[200px] object-fill' src={featured9}/>
-          <div className='p-2 flex flex-col gap-2 bg-gray-200 '>
-            <h2 className=''>Gaming chair Armless</h2>
-            <h3 className=' text-red-500'>Ksh 8,300</h3>
-            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
-            </div>
           </div>
         </div>
+        <Link to="/featuredProducts"> 
+        <Button className='w-40 mx-auto md:hidden' gradientDuoTone="pinkToOrange">Browse More <span><FaArrowRight className='ml-2 text-xl'/></span></Button>
+        </Link>
+        <hr className='block md:hidden'/>
         </div>
-        {/* visible small device */}
-        {/* <div className="flex md:hidden gap-2 m-auto justify-center pt-10 pb-24">
-                <Button className='h-10 my-auto w-6' onClick={()=>changeFeaturedImage('prev')}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-auto h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
-                </Button>
-                <div id='decor'>
-                <img className='w-60 h-60 object-contain mx-auto' src={featuredImages[featuredImage]}/>
-                <div className='p-2 flex flex-col gap-2 bg-gray-200'>
-            <h2 className=''>{featuredImagesNames[featureImageName]}</h2>
-            <h3 className=' text-red-500'>{featuredImagesPrice[featuredPrice]}</h3>
-            <Button className='w-full' gradientDuoTone="pinkToOrange" outline>Buy Now</Button>
-            </div>
-                </div>
-                <Button className='h-10 my-auto w-6' onClick={()=>changeFeaturedImage('next')}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-                </Button>
-              </div> */}
       </section>
       <section>
       <div className=' text-white bg-red-600 p-6 w-11/12 m-auto mt-14 md:mt-5 mb-10'>
